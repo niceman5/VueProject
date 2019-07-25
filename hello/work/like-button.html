@@ -1,0 +1,31 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=on, initial-scale=1.0, maximun-scale=1.0, maximun-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">    
+    <title>좋아요</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        <!-- --동등한 라인의 객체면 적용을 받음...하위는 안된다고 함 -->
+        <div v-if="liked">좋아요 눌렀음</div>        
+        <button v-else v-on:click="onClickButton">Like</button>
+        <div>깍뚜기</div>
+    </div>
+</body>
+<script>
+    const  app = new Vue({
+        el : '#root',
+        data : {
+            liked : false,            
+        },
+        methods: {
+            onClickButton() {
+                // --여기서 this는 data를 가르침
+                this.liked = true;
+            }
+        }
+    });
+</script>
+</html>
