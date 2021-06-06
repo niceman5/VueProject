@@ -33,6 +33,27 @@
         <label><input type="radio" value="blue" v-model="picked">청</label>
         <label><input type="radio" value="green" v-model="picked">녹</label>
         {{ picked }}이 선택됨
+        <br>
+        <!-- multiple이 없으면 기존대로 1개 선택 -->
+        <select v-model="myColor" multiple style="width: 150px;">
+            <option disabled>색을 선택해 주세요</option>
+            <option>red</option>
+            <option>green</option>
+            <option>blue</option>
+            <option>orange</option>
+            <option>brown</option>
+        </select>
+        <p :style="{color:myColor}">선택한 색상은 {{myColor}} 입니다.</p>
+        <br>
+        <!-- multiple style="width: 150px;" 
+            lazy다 쓰고 나서 인스턴스 데이터에 입력
+            trim 앞뒤공백 자동 제거
+            number 입력 내용을 자동으로 수식으로 변경
+        -->
+        <input v-model.lazy.trim="myText">   
+        <p>입력후 표시 "{{myText}}"" </p>
+        <input v-model.number="myNumber" type="number">
+        <p> 100을 더해서 표시함 {{100 + myNumber}} </p>
     </div>    
     <script>
         new Vue({
@@ -43,7 +64,10 @@
                 myCheck : true,
                 myChecks : [],
                 myAgree : false,
-                picked : 'red'
+                picked : 'red',
+                myColor:[],
+                myText : '',
+                myNumber : 0
             }
         });
     </script>
