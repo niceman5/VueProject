@@ -1,0 +1,33 @@
+<html>
+<head>
+    <meta charset="UTF-8">    
+    <title>Vue.js sample</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- <script scr="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script> -->
+    <!-- <script src="https://unpkg.com/vue@next"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        window.onload = function() {
+            new Vue({
+                el:"#app",
+                data:{
+                    count : 0
+                },
+                methods: {
+                    countup : function() {
+                        this.count++;
+                    }
+                }
+            })
+        }
+    </script>
+</head>
+<body>
+    <h2>클릭하면 카운트가 올라갑니다.</h2>
+    <div id="app">
+        <p>{{ count }}회</p>
+        <button v-on:click="countup">카운트</button>
+    </div>
+    
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>    
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">        
+        <img src="daum.png">직접지정
+        <br>        
+        <img :src="fileName">v-bind로 지정함   
+        <a href="https://roadbook.co.kr">링크 직접지정</a>
+        <br>
+        <a :href="myUrl">링크 v-bind지정</a>
+        <br>
+        <p align="right">우측정렬 직접지정</p>
+        <p :align="myAlign">v-bind로 지정 </p>
+        <p align="left">좌측정렬 직접지정</p>
+        <p align="center">중앙정렬 직접지정</p>
+        <p :style="{color:myColor}">문자색 지정 </p>
+        <p :style="{fontSize:mySize}">폰트크기 지정 </p>
+        <p :style="{backgroundColor:myBackColor}">배경색 지정 </p>
+        <p :class="myClass"> v-bind로 class지정</p>
+        <p :class="[myClass, darkClass]">복수의 클래스 지정</p> 
+        <p :class="{'strike-througt':isON}">데이터로 클래스 ON/OFF</p>
+    </div>
+    <script>        
+        new Vue({
+            el:'#app',
+            data : {
+                fileName : 'daum.png',
+                myUrl : 'https://roadbook.co.kr',
+                myAlign : "right",
+                myColor: '#E08000',
+                mySize: '200%',
+                myBackColor : 'aqua',
+                myClass: 'strike-througt',
+                darkClass : 'dark',
+                isON : false
+            }
+        })
+    </script>
+    <style>
+        .strike-througt {
+            text-decoration: line-through;
+            color: lightgray;
+        }
+        .dark {
+            background-color: gray;
+        }
+    </style>
+</body>
+</html>

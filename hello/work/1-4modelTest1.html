@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>        
+    <title>Model Test1</title>
+</head>
+<body>
+    <div id="app">
+        <input v-model="myName" placeholder="이름">
+        <p>나는 {{myName }} 입니다. </p>
+        <textarea v-model="myText"></textarea>
+        <p>문장은, [ {{myText}}] 입니다. </p>
+        <p>문자수는 {{ myText.length}} 자 입니다.</p>
+
+        <label >
+            <input type="checkbox" v-model="myCheck">
+            체크박스의 상태는 {{myCheck}}
+        </label>
+        <br>
+        <label> <input type="checkbox" value="red" v-model="myChecks">적</label><br>
+        <label> <input type="checkbox" value="blue" v-model="myChecks">청</label><br>
+        <label> <input type="checkbox" value="green" v-model="myChecks">녹</label><br>
+        선택한 색은 {{ myChecks }}
+        <br>
+        <label><input type="checkbox" v-model="myAgree">동의합니다.</label>
+        <button :disabled="!myAgree">송신</button>
+        <br>
+        <label><input type="radio" value="red" v-model="picked">적</label>
+        <label><input type="radio" value="blue" v-model="picked">청</label>
+        <label><input type="radio" value="green" v-model="picked">녹</label>
+        {{ picked }}이 선택됨
+    </div>    
+    <script>
+        new Vue({
+            el : "#app",
+            data : {
+                myName : '',
+                myText : '오늘 미세먼지 많음.',
+                myCheck : true,
+                myChecks : [],
+                myAgree : false,
+                picked : 'red'
+            }
+        });
+    </script>
+</body>
+</html>

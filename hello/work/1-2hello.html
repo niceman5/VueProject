@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>    
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <p>{{ myText}} </p>
+        <p v-text="myText"></p>
+        <p v-html="myText"></p>
+        <p>{{ myPrice * 1.08 }}</p>
+        <p>{{ "안녕하세요~ " +  myName + "님"}} </p>
+        <p> {{ myName.substr(0,1)}} </p>
+        <p>{{ myArray }} </p>
+        <p>{{ myArray[0]}} </p>
+        <p> {{myTea}} </p>
+        <p> {{myTea.name}} {{myTea.price}}</p>
+        <p> {{myTeas}} </p>
+        <p> {{myTeas[1].name}} {{myTeas[1].price}}</p>
+        {{$data}}
+        <hr>
+        <li v-for="(item, key) in $data">{{key}} : {{item}} </li>
+    </div>
+    <script>
+        var teaList = [
+            {name:'다즐링', price:6000},
+            {name:'실론티', price:5000},
+            {name:'얼그레이', price:4000}
+        ];        
+        new Vue({
+            el:'#app',
+            data : {
+                myText : '<h1>Hello!!!!</h1>',
+                myPrice : 500,
+                myName : '홍길동',
+                myArray :['가나다','얼그레이','실론'],
+                myTea : {name:'다즐링', price:6000},
+                myTeas : teaList
+            }
+        })
+    </script>
+</body>
+</html>
