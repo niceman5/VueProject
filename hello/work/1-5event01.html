@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>        
+    <title>event</title>
+</head>
+<body>
+    <div id="app">
+        <button value="good" :disabled="isClick" @click="oneClick">좋아!!!</button>
+        <p>{{count}}</p>
+        <button @click="countUp(3)">3증가</button>
+        <button @click="countUp(10)">10증가</button>
+        <button @click="countUp(100)">100증가</button>
+        <br>
+        <hr>
+        <!-- 
+            .enter
+            .tab
+            .delete
+            .esc
+            .space
+            .up
+            .down
+            .left
+            .right
+            . 0~9
+            . A-Z
+            .ctrl
+            .shift
+            .alt
+            .meta (Windows키 mac은 command키)
+        -->
+        <input @keyup.enter="showAlert" v-model="myText">
+        <input @keyup.enter.shift="showAlert2" v-model="myText">        
+        <p>{{myText}} </p>
+
+    </div>
+    <script>
+        function good() {
+            alert('좋아');
+        }
+        new Vue({
+            el : '#app',
+            data : {
+                isClick : false,
+                count : 0,
+                myText : 'Hello!!'
+            },
+            methods : {
+                oneClick : function() {
+                    this.isClick = true;
+                    alert('aaa');
+                    good();
+                },
+                countUp:function(value) {
+                    this.count += value;
+                },
+                showAlert : function() {
+                    alert('Enter키를 눌렀음');
+                },
+                showAlert2 : function() {
+                    alert('Shift + Enter키를 눌렀음');
+                }
+            }
+        })
+    </script>
+</body>
+</html>

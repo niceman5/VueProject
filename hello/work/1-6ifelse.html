@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>        
+    <title>event</title>
+</head>
+<body>
+    <div id="app">
+        <label><input type="checkbox" v-model="myVisible">표시</label>
+        <p v-if="myVisible">체크박스가 ON</p>
+        <p v-else>체크박스가 OFF</p>
+        <hr>
+        <button v-if="isShow" @click="good">좋아!!</button>
+        <!-- 
+            v-if와 비슷한것이 있음  v-show 
+            v-if는 html상에서 tag를 삭제하는 것이고.
+            v-show는 html 에서 tag를 안보이게 처리하는 것임.
+        -->
+    </div>
+    <script>
+        new Vue({
+            el : '#app',
+            data : {
+                myVisible : false,
+                isShow : true
+            },
+            methods : {
+                good : function () {
+                    this.isShow = false;
+                }
+            }
+        })
+    </script>
+</body>
+</html>        
