@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>        
+    <title>for</title>
+</head>
+<body>
+    <div id="app">
+        <h1>배열 오브젝트를 표시</h1>
+        <ul>
+            <li v-for="item in myArray">{{item}} </li>
+        </ul>
+        <hr>
+        <ul>
+            <li v-for="item in objArray">{{item.name}} \ {{item.price }} </li>
+        </ul>
+        <hr>
+        <ul>
+            <li v-for="n in 10">{{n}} * 5 = {{n*5}} </li>
+        </ul>
+        <hr>
+        <ul>
+            <li v-for="(item,index) in myArray2">{{item}} :  {{index}} </li>
+        </ul>
+    </div>
+    <script>
+        new Vue({
+            el : '#app',
+            data : {
+                myArray : ['가','나','다'],
+                objArray : [
+                        {name:'단팥빵', price:1000},
+                        {name:'소보루빵', price:2000},
+                        {name:'치즈빵', price:3000}
+                    ],
+                myArray2 : ['단팥빵','소보루빵','치즈빵','건빵' ]
+            },
+            methods : {
+                good : function () {
+                    this.isShow = false;
+                }
+            }
+        })
+    </script>
+</body>
+</html>        
