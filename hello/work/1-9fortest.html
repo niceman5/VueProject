@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>        
+    <title>반복테스트</title>
+    </style>
+</head>
+<body>
+    <div id="app">
+        <ul>
+            <li v-for="item in myArray">{{item}} </li>
+        </ul>
+        <button @click="addLast">맨뒤에 추가</button>
+        <button @click="addObj(3)">네번째 추가</button>
+        <button @click="changeObj(0)">첫번째 변경</button>
+        <button @click="deleteObj(1)">두번째를 삭제</button>
+        <hr>
+        <ul>
+            <li v-for="item in myArray2">{{item}} </li>            
+        </ul>
+        <button @click="sortData(myArray2)">Sort</button>
+        <hr>
+        <ul>
+            <li v-for="item in myArray3" v-if="item % 2 == 0">{{ item }}</li>
+        </ul>
+        <hr>
+        <ul>
+            <li v-for="item in myArray3">{{ item }}</li>
+        </ul>
+        <button @click="evenData()">짝수만 필터링</button>
+    </div>
+    <script>
+        new Vue({
+            el : '#app',
+            data : {
+                myArray : ['첫번째','두번째','세번째','네번째','다섯번째'],
+                myArray2 : ['첫번째','두번째','세번째','네번째','다섯번째'],
+                myArray3 : [1,2,3,4,5,6]
+            },
+            methods : {
+                addLast : function() {
+                    this.myArray.push('[맨뒤에 추가]');
+                },
+                addObj : function(index) {
+                    this.myArray.splice(index,0, '[추가]');
+                },
+                changeObj : function(index) {
+                    this.myArray.splice(index,1, '[변경]');
+                },
+                deleteObj : function(index) {
+                    this.myArray.splice(index, 1);
+                },
+                sortData : function(listdata) {
+                    listdata.sort(function(a,b){
+                        return (a < b ? -1:1);
+                    });               
+                },
+                evenData : function() {
+                    this.myArray3 = this.myArray3.filter(
+                        function(value) {return value % 2 == 0; }
+                    );
+                }
+            }
+        })
+    </script>
+</body>
+</html>        
