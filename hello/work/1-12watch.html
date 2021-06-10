@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>        
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.1/gsap.min.js"></script>        
+    <title>computed</title>
+    </style>
+</head>
+<body>
+    <div id="app">
+        <p>금지문자는 [{{xText}}] </p>
+        <textarea v-model="inputText"></textarea>
+        <hr>
+        <p> 앞으로 {{restSec}}초 </p>
+        <button @click="startTimer">START</button>
+        <hr>
+        <button id="movebtn" type="button" onclick="myMove()">이동</button>
+    </div>    
+
+
+    <script>
+        function myMove() {            
+            TweenMax.to('#movebtn', 1, {x:"500px;"});
+        }
+
+        new Vue({
+            el : '#app',
+            data : {
+                xText : '안됨',
+                inputText : '오늘은 날씨가 좋습니다.',
+                restSec : 10,
+                timeObj : null
+            },
+            methods: {
+                startTimer : function() {
+                    this.restSec = 10;
+                    this.timeObj = setInterval(() => {this.restSec--}, 1000)
+                }
+            },
+            watch : {
+                inputText : function() {
+                    var pos = this.inputText.indexOf(this.xText);
+                    if(pos > 0 ){
+                        alert(this.xText + "는 입력할수 없습니다.");
+                        this.inputText = this.inputText.substr(0,pos);
+                    }
+                },
+                restSec : function() {
+                    if (this.restSec <= 0) {
+                        alert('제한 시간 입니다.');
+                        clearInterval(this.timeObj);
+                        
+                    }  
+                }
+            }
+
+            
+        })
+    </script>
+</body>
+</html>        

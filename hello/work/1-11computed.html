@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>        
+    <title>computed</title>
+    </style>
+</head>
+<body>
+    <div id="app">
+        <input v-model.number="price" type="number">
+        <p>소비세 포함금액 {{taxInclude}} </p>
+        <hr>
+        <input v-model.number="price2" type="number">원 * 
+        <input v-model.number="count" type="number">개
+        <p>합계 {{sum}} </p>
+        <p>세금포함 : {{taxInclude2}} </p>
+        <hr>
+        <p>감상은 140자 이내로 입력하세요.</p>
+        <textarea v-model="myText"></textarea>
+        <p :style="{color:computedColor}">남은 글자는 {{remaining}} 입니다.</p>
+        <hr>
+        <input v-model="findWord">
+        <ul>
+            <li v-for="item in findItems">{{item}} </li>
+        </ul>
+        <hr>
+        <p :style="{backgroundColor:mixColor}">{{mixColor}} </p>
+        <input type="range" v-model="R" min=0 max=255> <br>
+        <input type="range" v-model="G" min=0 max=255> <br>
+        <input type="range" v-model="B" min=0 max=255> <br>
+
+    </div>    
+
+
+    <script>
+        new Vue({
+            el : '#app',
+            data : {
+                price : 1000,
+                price2 : 10000,
+                count : 1,
+                myText : '오늘은 날이 좋음',
+                findWord : '',
+                items : ['설악산','한라산','북한산','백두산','지리산','오대산'],
+                R : 255,
+                G : 150,
+                B : 100   
+            },
+            computed : {
+                taxInclude : function() {
+                    return this.price * 1.1;
+                },
+                sum : function() {
+                    return this.price2 * this.count;
+                },
+                taxInclude2 : function() {
+                    return this.sum * 1.1;
+                },
+                remaining : function() {
+                    return 140 - this.myText.length;
+                },
+                computedColor : function() {
+                    col = "green";
+                    if(this.remaining < 20){
+                        col = "orange";
+                    }
+                    if(this.remaining < 1){
+                        col = "red";
+                    }
+                    return col;
+                },
+                findItems : function() {
+                    if(this.findWord){
+                        return this.items.filter(function(value){
+                            return (value.indexOf(this.findWord) > -1);
+                        }, this);
+                    }
+                    else {
+                        return this.items;
+                    }
+                },
+                mixColor : function() {
+                    var ans = "RGB(" + this.R + "," + this.G + "," + this.B + ")";
+                    return ans;
+                }
+            }
+            
+        })
+    </script>
+</body>
+</html>        
