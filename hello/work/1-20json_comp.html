@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>    
+    <title>json file처리</title>
+</head>
+<body>
+    <h2>JSON파일을 읽어 들이는 예제 Javascript</h2>    
+    <div id="app">        
+        <div v-for="item in dataArray" :key="item.title">
+            <my-product :object="item"></my-product>
+        </div>
+        <button @click="sortData">소트</button>
+        <button @click="shufleData">셔플</button>
+    </div>
+    <script>
+        var MyComponent = {
+            props: ["object"],
+            template:'<div style="width:300px;backgroundColor:#ffddaa;"><p style="backgroundColor:#ffa95E;">{{object.title}}</p><p>해설 : {{ object.body}} </p></div>'
+        }
+        new Vue({
+            el:'#app',
+            data : {
+                dataArray : [
+                    {"title":"AAA", "body":"aaa"},
+                    {"title":"BBB", "body":"bbb"},
+                    {"title":"CCC", "body":"ccc"}
+                ]
+            },
+            components : {
+                'my-product'  : MyComponent
+            },
+            methods : {
+                sortData: function() {
+                    this.dataArray.sort(function(a,b){
+                        return (a.title < b.title ? -1:1);
+                        return 0;
+                    })
+                },
+                shufleData : function() {
+                    var buffer = [];
+                    var len = this.dataArray.length;
+                    for (var i = len; len > 0; len--){
+                        var r=Math.floor(Math.random() * len);
+                        buffer.push(this.dataArray[r]);
+                        this.dataArray.splice(r, 1);
+                    }
+                    this.dataArray = buffer;
+                }
+            }
+        })
+    </script>
+</body>
+</html>        
