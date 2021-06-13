@@ -1,0 +1,56 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>    
+    <title>todo</title>
+    <style>
+        .red {
+            color : red;
+        }
+        .bold {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h2>컴포넌트</h2>
+    <div id="app">
+        {{ message }} <br>    
+        <button @click="changeMessage">Click</button> <br>
+        {{ updated }}
+        <hr>
+        <p :class="{red : isRed,  bold : isBold}">반가워요!!@</p>
+    </div>    
+    <script>    
+        new Vue({
+            el : '#app',
+            data : {                
+                message : '안녕하세요! Vue.js!',
+                updated : '아니요',
+                isRed :  true,
+                isBold : false
+            },
+            methods : {
+                changeMessage() {
+                    this.message = '반가워요....늘 행복하세요!';
+                }
+            },
+            computed : {
+                reversMesg() {
+                    this.message = this.message.split('').reverse().join('');
+                }
+            },
+            watch : {
+                message(newValue, oldvalue) {
+                    this.updated = oldvalue + '->' + newValue;
+                }
+            }
+        })
+    </script>
+</body>
+</html>        

@@ -1,0 +1,74 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>    
+    <title>todo</title>
+</head>
+<body>
+    <h2>컴포넌트</h2>
+    <div id="app">
+
+        <!-- 
+        활용가능한 이벤트명    
+        click 마우스를 클릭했을 때 실행함 
+        dblclick 마우스를 더블 클릭했을 때 실행함 
+        mouseover 마우스의 포인트가 요소 위로 올라왔을 때 실행함 
+        mouseout 마우스의 포인트가 요소 밖으로 벗어났을 때 실행함 
+        mousemove 마우스의 포인트가 이동했을 때 실행함 
+        mousedown 마우스의 버튼을 눌렀을 때 실행함 
+        mouseup 마우스의 버튼을 놓았을 때 실행함 
+        keydown 키보드의 키를 눌렀을 때 실행함 
+        keyup 키보드의 키를 놓았을 때 실행함 
+        keypress 키보드의 키를 눌렀다가 놓았을 때 실행함 
+        change 요소가 변경될 때 실행함 
+        submit <Form>이 제출될 때 실행함 
+        reset <Form>이 재설정될 때 실행함 
+        select <select>의 값이 선택되었을 때 실행함 
+        focus 태그에 포커스가 있을 때 실행함 
+        blur 태그에 포커스를 잃었을 때 실행함
+            
+            
+        수식어 명 설명 비고
+         .prevent 기본 이벤트의 자동 실행을 중단 시킴 preventDefault() 과 동일한 기능 
+         .stop 이벤트가 전파되는 것을 중단 시킴 (Bubbling 중단) stopPropagation() 과 동일한 기능
+         .capture 포착 단계에서만 이벤트를 발생시킴 내부 엘리먼트를 대상으로 하는 이벤트가 해당 엘리먼트에서 처리되기 전에 여기서 처리함 
+         .self 발생 단계에서만 이벤트를 발생시킴 event.target이 엘리먼트 자체인 경우에만 트리거를 처리, 자식 엘리먼트에서는 실행안됨 
+         .once 이벤트를 한번만 실행 시킴 
+         .passive 기본 이벤트를 취소할 수 없게 함 있을지 모를 .preventDefault()를 실행 안되게 함.
+
+         스크롤의 기본 이벤트를 취소할 수 없습니다.
+        <div v-on:scroll.passive="onScroll">...</div> 
+        
+        해당 태그를 클릭 했을 경우 a태그 이벤트를 막고 goodgood() 메소드 실행.
+        <a id="goodboy" v-on:click.prevent="goodgood">좋아요</a>
+        <a id="goodboy" @click.stop="goodgood">좋아요</a>
+        좋아요 버튼을 클릭하면 javascript가 <a>태그가 기본 수행하는 href="..." 이벤트를 중지시키고 goodgood() 메서드만 호출합니다.   
+        -->
+
+        <!-- form의 기본동작인 새로고침을 안하게 한다. -->
+        <form @submit.prevent="submit">
+            <input type="text"><br>
+            <button type="submit">submit</button>
+        </form>
+    </div>    
+    <script>    
+        new Vue({
+            el : '#app',
+            data : {
+                year : 2021
+            },
+            methods : {
+                submit() {
+                    alert('submit');
+                    console.log('hello');
+                }
+            }
+        })
+    </script>
+</body>
+</html>        

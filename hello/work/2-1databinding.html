@@ -1,0 +1,56 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>    
+    <title>todo</title>
+</head>
+<body>
+    <h2>컴포넌트</h2>
+    <div id="app">
+        {{ nextYear('안녕') }}
+        <input :type="type" :value="inputData"> 
+        <br>
+        <a :href="link">url링크</a>
+        <br>
+        <a :href="getUrl('kossiecoder')">url링크</a>
+        <br>
+        <p> {{ message }} </p>
+        <button @click="reversMesg">Click Me</button>
+    </div>    
+    <script>    
+        new Vue({
+            el : '#app',
+            data : {
+                person : {
+                    name : '홍길동',
+                    age : 34
+                },
+                inputData : 'hello',
+                type : 'number',
+                link : 'https://www.youtube.com',
+                message : '안녕하세요! Vue.js!'
+            },
+            methods : {
+                getUrl(channel) {
+                    return this.link +'/' + channel;
+                },
+                nextYear(greeting) {
+                    return greeting + '!' + this.person.name + '는 내년에 ' +(this.person.age + 1) + '살 입니다.';
+                },
+                otherMethod() {
+                    this.nextYear();
+                },
+                reversMesg() {
+                    this.message = this.message.split('').reverse().join('');
+                }
+
+            }
+        })
+    </script>
+</body>
+</html>        
