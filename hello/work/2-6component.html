@@ -1,0 +1,71 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>    
+    <title>todo</title>
+</head>
+<body>
+    <h2>여러개의 인스턴스 </h2>
+    <div id="app">
+        <!-- {{name}} <br>
+        <button @click="changeText">Click</button>  
+        <hr> -->
+        <k-button></k-button>
+    </div>    
+    <hr>
+    <div id="app-1">
+        <!-- {{name}} <br>
+        <button @click="changeText">Click</button>  
+        <hr> -->
+        <k-button></k-button>
+    </div>    
+    <script>    
+        Vue.component('hello-world', {
+            template : `
+                <div>
+                    hello-world
+                </div>
+            `,
+
+
+        });
+        //전역으로 등록됨
+        Vue.component('k-button', {
+            //템플릿은 하나의 tag안에 다 들어가야 함
+            template : ` 
+                <div>
+                    {{name}} <br>
+                    <hello-world></hello-world>
+                    <button @click="changeText">Click</button> 
+                </div>
+            `,
+            // data부분에 object를 넣으면 레퍼런스참조가 되어 여러군데 사용시 동시에 업데이트가 됨
+            // data : {                
+            //     name : '홍길동'
+            // },
+            data() {
+                return {
+                    name : '홍길동'
+                }
+            },
+            methods : {
+                changeText : function() {
+                    this.name = '홍길동 업데이트';                    
+                }
+            }
+        });
+
+        const app = new Vue({
+            el : '#app',            
+        })
+        const app1 = new Vue({
+            el : '#app-1',            
+        })
+    </script>
+</body>
+</html>        
