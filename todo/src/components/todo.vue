@@ -24,9 +24,9 @@ export default {
     methods: {
         toggleCheckbox(e) {
             this.$emit('toggle-checkbox', {
-                id:this.todo.id,
+                id : this.todo.id,
                 checked : e.target.checked
-            });
+            })
         },
         clickDelete() {
             this.$emit('click-delete', this.todo.id);
